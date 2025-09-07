@@ -5,6 +5,7 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ArticlePage from './pages/ArticlePage.jsx'
 import NotFoundError from './components/NotFoundError.jsx'
+import MyArticles from './pages/MyArticles.jsx'
 
 const router = createBrowserRouter([{
   path: '/',
@@ -12,8 +13,12 @@ const router = createBrowserRouter([{
   errorElement: <NotFoundError />,
 },
 {
-  path: '/ArticlePage',
+  path: '/article/:id',
   element: <ArticlePage />
+},
+{
+  path: '/MyArticles',
+  element: <MyArticles/>
 }
 ])
 

@@ -1,12 +1,12 @@
 import NavBar from "../components/NavBar"
-import Footer from "../components/Footer"
 import Banner from "../components/Banner"
-import ArticleBody from "../components/ArticleBody"
+import Footer from "../components/Footer"
+import MyArticleGrid from "../components/MyArticlesGrid"
 export default function HomePage() {
     return (<>
-        <NavBar/>
+        <NavBar />
         <Banner />
-        <ArticleBody/>
+        <MyArticleGrid/>
         <Footer/>
     </>)
 }

@@ -6,35 +6,38 @@ import { Grid, Card, CardMedia, CardContent, Typography, Box } from "@mui/materi
 
 
 export default function ArticleGrid() {
-const { articles, fetchPosts, loading, error } = useArticleStore((state) => state)
+const { articles, fetchPosts, error } = useArticleStore((state) => state)
 const { setPosts, posts, getPostById, likes, dislikes } = storeLikeDislike((state) => state)
 
-let apiLoad = false;
+const [hydrated, setHydrated] = useState(false)
 
 useEffect(() => {
-  fetchPosts()
-  const mapped = articles.map((a) => ({
-    id: a.id,
-    title: a.title,
-    body: a.body,
-    image: a.image || `https://picsum.photos/seed/${a.id}/300/200`,
-    likes: a.reactions.likes || 0 ,
-    dislikes: a.reactions.dislikes || 0,
-  }))
-  setPosts(mapped)
-  console.log(mapped)
-  apiLoad = true
+  const unsub = storeLikeDislike.persist.onFinishHydration(() => {
+    setHydrated(true)
+  })
+
+  if(storeLikeDislike.persist.hasHydrated()) {
+    setHydrated(true)
+  }
+  return () => unsub()
 }, [])
 
 useEffect(() => {
-  if(apiLoad === true) {
-    setPosts(posts)
-  }
-})
+  if(!hydrated) return
+  if(posts.length === 0) {
+  fetchPosts()
+  if(articles.length > 0) {
+  const articleFormat = articles.map((a) => ({
+  id: a.id,
+  title: a.title,
+  body: a.body,
+  image: a.image,
+  likes: a.reactions.likes || 0,
+  dislikes: a.reactions.dislikes || 0,}))
+  setPosts(articleFormat)}}
+}, [hydrated, articles, posts.length, fetchPosts, setPosts])
 
-
-if (loading) return <p className="text-black">loading...</p>
-if (error) return <p className="text-red-500">Error: {error}</p>
+if (!hydrated) return <p className="text-black">loading...</p>
 
 return (<>
   <Box sx={{ p: 6 }}>

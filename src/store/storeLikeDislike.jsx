@@ -26,6 +26,17 @@ const storeLikeDislike = create(
                 const {posts} = get();
                 return posts.find((post) => post.id ===id);
             },
+
+            deletePostById: (id) => {
+                set((state) => ({
+                    posts:state.posts? state.posts.filter((post) => post.id !== id) : [],
+                }))
+            },
+
+            addNewPost: (post) => 
+                set((state) => ({
+                    posts: [...state.posts, {post, id: Date.now(),}],
+                }))
         }),
 
         {

@@ -5,7 +5,7 @@ export default function Footer() {
       sx={{
         bgcolor: "primary.main",
         color: "white",
-        height: "200px",
+        height: "20vh",
         p: 4,
         display: "flex",
         justifyContent: "center",

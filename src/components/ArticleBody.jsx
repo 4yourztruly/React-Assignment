@@ -14,6 +14,8 @@ export default function ArticleBody() {
 
     const post = getPostById(Number(id));
 
+    if(!post) return <p className='text-black'>Post not found</p>
+
     if (!article) return <p>No article found</p>
     if (loading) return <p className="text-black">loading...</p>
     if (error) return <p className="text-red-500">Error: {error}</p>

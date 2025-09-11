@@ -33,7 +33,8 @@ useEffect(() => {
   body: a.body,
   image: a.image,
   likes: a.reactions.likes || 0,
-  dislikes: a.reactions.dislikes || 0,}))
+  dislikes: a.reactions.dislikes || 0,
+  personal: false,}))
   setPosts(articleFormat)}}
 }, [hydrated, articles, posts.length, fetchPosts, setPosts])
 
@@ -46,7 +47,7 @@ return (<>
     </Typography>
 
     <Grid container spacing={4}>
-      {posts.map((post) => (
+      {posts.filter((post) => post.personal === false).map((post) => (
         <Grid key={post.id} xs={12} sm={4} lg={4} size={4}>
           <Card
             sx={{

@@ -1,25 +1,41 @@
+import {Box, Grid, Typography, Link} from "@mui/material"
 export default function Footer() {
-    return (<>
-<footer className="bg-red-500 footer sm:footer-horizontal text-neutral-content p-10">
-  <nav>
-    <h6 className="footer-title">Services</h6>
-    <a className="link link-hover">Branding</a>
-    <a className="link link-hover">Design</a>
-    <a className="link link-hover">Marketing</a>
-    <a className="link link-hover">Advertisement</a>
-  </nav>
-  <nav>
-    <h6 className="footer-title">Company</h6>
-    <a className="link link-hover">About us</a>
-    <a className="link link-hover">Contact</a>
-    <a className="link link-hover">Jobs</a>
-    <a className="link link-hover">Press kit</a>
-  </nav>
-  <nav>
-    <h6 className="footer-title">Legal</h6>
-    <a className="link link-hover">Terms of use</a>
-    <a className="link link-hover">Privacy policy</a>
-    <a className="link link-hover">Cookie policy</a>
-  </nav>
-</footer>
-</>)}
+    return (
+     <Box
+      sx={{
+        bgcolor: "primary.main",
+        color: "white",
+        height: "200px",
+        p: 4,
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <Grid container spacing={7}>
+        <Grid item xs={12} sm={6} md={3}>
+          <Typography variant="h6">Contact Us</Typography>
+          <Link href="#" color="inherit" display="block" underline="hover">Support</Link>
+          <Link href="#" color="inherit" display="block" underline="hover">FAQ</Link>
+          <Link href="#" color="inherit" display="block" underline="hover">Whisleblow</Link>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Typography variant="h6">Company</Typography>
+          <Link href="#" color="inherit" display="block" underline="hover">About Us</Link>
+          <Link href="#" color="inherit" display="block" underline="hover">Careers</Link>
+          <Link href="#" color="inherit" display="block" underline="hover">Blog</Link>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Typography variant="h6">Products</Typography>
+          <Link href="#" color="inherit" display="block" underline="hover">Pricing</Link>
+          <Link href="#" color="inherit" display="block" underline="hover">Features</Link>
+          <Link href="#" color="inherit" display="block" underline="hover">Integrations</Link>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Typography variant="h6">Affiliates</Typography>
+          <Link href="#" color="inherit" display="block" underline="hover">Partners</Link>
+          <Link href="#" color="inherit" display="block" underline="hover">LinkedIn</Link>
+          <Link href="#" color="inherit" display="block" underline="hover">Press</Link>
+        </Grid>
+      </Grid>
+    </Box>
+    )}

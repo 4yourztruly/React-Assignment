@@ -6,6 +6,22 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ArticlePage from './pages/ArticlePage.jsx'
 import NotFoundError from './components/NotFoundError.jsx'
 import MyArticles from './pages/MyArticles.jsx'
+import {createTheme, ThemeProvider } from '@mui/material'
+
+const theme = createTheme ({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#e20f00',
+    },
+    secondary: {
+      main: '#f50057',
+    },
+  },
+  typography: {
+    fontSize: 16,
+  }
+})
 
 const router = createBrowserRouter([{
   path: '/',
@@ -24,6 +40,8 @@ const router = createBrowserRouter([{
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <ThemeProvider theme={theme}>
     <RouterProvider router={router} />
+    </ThemeProvider>
   </StrictMode>,
 )

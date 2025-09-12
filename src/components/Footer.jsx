@@ -1,7 +1,7 @@
-import {Box, Grid, Typography, Link} from "@mui/material"
+import { Box, Grid, Typography, Link } from "@mui/material"
 export default function Footer() {
-    return (
-     <Box
+  return (
+    <Box
       sx={{
         bgcolor: "primary.main",
         color: "white",
@@ -38,4 +38,5 @@ export default function Footer() {
         </Grid>
       </Grid>
     </Box>
-    )}
+  )
+}

@@ -6,9 +6,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ArticlePage from './pages/ArticlePage.jsx'
 import NotFoundError from './components/NotFoundError.jsx'
 import MyArticles from './pages/MyArticles.jsx'
-import {createTheme, ThemeProvider } from '@mui/material'
+import { createTheme, ThemeProvider } from '@mui/material'
 
-const theme = createTheme ({
+const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
@@ -34,14 +34,14 @@ const router = createBrowserRouter([{
 },
 {
   path: '/MyArticles',
-  element: <MyArticles/>
+  element: <MyArticles />
 }
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </ThemeProvider>
   </StrictMode>,
 )

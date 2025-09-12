@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 
 
 export default function ArticleBody() {
-    const { posts, likes, dislikes, like, dislike, getPostById} = storeLikeDislike((state) => state)
+    const { posts, likes, dislikes, like, dislike, getPostById } = storeLikeDislike((state) => state)
     const { article, fetchById, loading, error } = useArticleStore((state) => state)
     const { id } = useParams()
     useEffect(() => {
@@ -14,7 +14,7 @@ export default function ArticleBody() {
 
     const post = getPostById(Number(id));
 
-    if(!post) return <p className='text-black'>Post not found</p>
+    if (!post) return <p className='text-black'>Post not found</p>
 
     if (!article) return <p>No article found</p>
     if (loading) return <p className="text-black">loading...</p>

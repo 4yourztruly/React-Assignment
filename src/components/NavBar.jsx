@@ -9,9 +9,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField'
 import storeLikeDislike from '../store/storeLikeDislike';
-import Toast from '../components/Toast'
-import Stack from '@mui/material/Stack';
-import {useState} from 'react'
+import { useState } from 'react'
+import { Toaster, toast } from "react-hot-toast";
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -19,6 +18,7 @@ export default function NavBar() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -29,45 +29,36 @@ export default function NavBar() {
 
   const addArticle = storeLikeDislike((state) => state.addNewPost)
 
-  const [toast, setToast] = useState({open: false, message: "", severity: "success"})
-
-  const showToast = (message, severity = "success") => {
-      setToast({open: true, message, severity})
-  }
-
-  <Toast 
-  open={toast.open}
-  message={toast.message}
-  severity={toast.severity}
-  onClose={() => setToast({...toast, open: false})} />
-
   const handleSubmit = () => {
+    if (!title.trim() || !body.trim()) {
+      return toast.error("Please fill all required fields!")
+    }
+
     addArticle({
+      id: Date.now(),
       title,
       body,
       image,
       likes: 0,
-      dislike: 0,
+      dislikes: 0,
       personal: true,
     })
 
-    if(!title.trim()) return 
+
 
     setTitle("")
     setBody("")
-    setImage("")
-
-    showToast("Article Created!", "success")
 
     handleClose()
+    toast.success("Article Created!")
   }
 
   return (
     <Box sx={{}}>
       <AppBar position="static">
         <Toolbar sx={{
-          display:"flex",
-          justifyContent:"space-between",
+          display: "flex",
+          justifyContent: "space-between",
         }}>
           <Button variant='contained' color='primary' component={Link} to="/">Home</Button>
           <div>
@@ -93,9 +84,8 @@ export default function NavBar() {
                 },
               }}
             >
-              <MenuItem><TextField id="titleInput" label="Article title" variant="outlined" size='small' value={title} onChange={(e) => setTitle(e.target.value)}/></MenuItem>
-              <MenuItem><TextField id="bodyInput" label="Article body" variant="outlined" size='small' value={body} onChange={(e) => setBody(e.target.value)}/></MenuItem>
-              <MenuItem><TextField id="imageInput" label="Article image" variant="outlined" size='small' value={image} onChange={(e) => setImage(e.target.value)}/></MenuItem>
+              <MenuItem><TextField id="titleInput" label="Article title" variant="outlined" size='small' value={title} onChange={(e) => setTitle(e.target.value)} /></MenuItem>
+              <MenuItem><TextField id="bodyInput" label="Article body" variant="outlined" size='small' value={body} onChange={(e) => setBody(e.target.value)} /></MenuItem>
               <MenuItem><Button variant='contained' color='primary' fullWidth onClick={handleSubmit}>Submit</Button></MenuItem>
             </Menu>
           </div>

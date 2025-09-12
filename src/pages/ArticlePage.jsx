@@ -4,9 +4,9 @@ import Banner from "../components/Banner"
 import ArticleBody from "../components/ArticleBody"
 export default function HomePage() {
     return (<>
-        <NavBar/>
+        <NavBar />
         <Banner />
-        <ArticleBody/>
-        <Footer/>
+        <ArticleBody />
+        <Footer />
     </>)
 }

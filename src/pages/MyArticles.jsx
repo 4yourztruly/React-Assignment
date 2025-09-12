@@ -6,7 +6,7 @@ export default function HomePage() {
     return (<>
         <NavBar />
         <Banner />
-        <MyArticleGrid/>
-        <Footer/>
+        <MyArticleGrid />
+        <Footer />
     </>)
 }

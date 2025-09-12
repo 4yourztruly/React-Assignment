@@ -4,6 +4,7 @@ import storeLikeDislike from "../store/storeLikeDislike";
 import { Link } from "react-router-dom"
 import { Grid, Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { toast } from "react-hot-toast"
 
 export default function MyArticleGrid() {
   const { articles, fetchPosts, error } = useArticleStore((state) => state)
@@ -29,6 +30,7 @@ export default function MyArticleGrid() {
   if (!hydrated) return <p className="text-black">loading...</p>
 
   const handleDelete = (id) => {
+    toast.error("Article has been deleted!")
     deletePostById(id)
   }
 
@@ -40,7 +42,7 @@ export default function MyArticleGrid() {
       </Typography>
 
       <Grid container spacing={4}>
-        {posts.filter((post) => post.personal === false)?.map((post) => (
+        {posts.filter((post) => post.personal === true).map((post) => (
           <Grid key={post.id} xs={12} sm={4} lg={4} size={4}>
             <Card
               sx={{
@@ -74,7 +76,6 @@ export default function MyArticleGrid() {
                       WebkitLineClamp: 3,
                       WebkitBoxOrient: "vertical",
                       overflow: "hidden",
-                      "&:hover": { textDecoration: "underline" },
                     }}
                   >
                     {post.body}
@@ -82,7 +83,7 @@ export default function MyArticleGrid() {
                 </Link>
                 <Typography color="black">{post.likes} Likes</Typography>
                 <Typography color="black">{post.dislikes} Dislikes</Typography>
-                <DeleteIcon onClick={() => handleDelete(post.id)} sx={{ ":hover": { color: "red", cursor: "pointer",}}} />
+                <DeleteIcon onClick={() => handleDelete(post.id)} sx={{ ":hover": { color: "red", cursor: "pointer", } }} />
               </CardContent>
             </Card>
           </Grid>
